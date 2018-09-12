@@ -7,7 +7,6 @@
 	class Handler{
 
 		public function toJson(Request $request, Exception $e){
-			// Todo: move to own module
 			$message = 'Unknown Exeception: '.get_class($e);
 
 			if(get_class($e) == 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException'){
