@@ -3,8 +3,9 @@
 
 	use \Illuminate\Http\Request;
 	use \Exception;
+	use App\Http\Controllers\Controller;
 
-	class Handler{
+	class Handler extends Controller{
 
 		public function toJson(Request $request, Exception $e){
 			$message = 'Unknown Exeception: '.get_class($e);
@@ -16,9 +17,8 @@
 				$message = 'Unknown Exeception: '.get_class($e);
 			}
 
-			return response()->json([
-				'status' => 'exeception',
-				'message' => $message
-			]);
+			$this->addMessage('exception',$message);
+
+			return $this->getResponse();
 		}
 	}
