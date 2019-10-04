@@ -1,5 +1,5 @@
 {
-    "name":"mkaaaaaaay/lumen-exeception-to-json",
+    "name":"jonathan-martz/lumen-exeception-to-json",
     "description":"Php Lumen handle api execption.",
     "require":{
         "php":"^7.0",
