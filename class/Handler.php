@@ -18,7 +18,7 @@
 				$this->addResult('validation',$e->errors());
 			}
 			else{
-				$message = 'Unknown Exeception: '.get_class($e);
+				$message = 'Unknown Exeception: '.$e->getMessage();
 			}
 
 			$this->addMessage('exception',$message);
