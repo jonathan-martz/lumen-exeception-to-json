@@ -1,28 +1,42 @@
 <?php
+
 namespace MkaaaaaaaY\LumenExecptionToJson;
 
-use \Illuminate\Http\Request;
-use \Exception;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class Handler extends Controller{
+/**
+ * Class Handler
+ * @package MkaaaaaaaY\LumenExecptionToJson
+ */
+class Handler extends Controller
+{
 
-    public function toJson(Request $request, $e){
-        $message = 'Unknown Exeception: '.get_class($e);
+    /**
+     * @param Request $request
+     * @param $e
+     * @return mixed
+     */
+    public function toJson(Request $request, $e)
+    {
+        $message = 'Unknown Exeception: ' . get_class($e);
 
-        if(get_class($e) == 'Illuminate\Validation\ValidationException'){
+        if(get_class($e) == 'Illuminate\Validation\ValidationException') {
             $message = $e->getMessage();
-            $this->addResult('validation',$e->errors());
+            $this->addResult('validation', $e->errors());
         }
-        else{
-            $message = 'Unknown Exeception: '.$e->getMessage();
+        else {
+            $message = 'Unknown Exeception: ' . $e->getMessage();
         }
 
-        $this->addMessage('exception',$message);
+        $this->addMessage('exception', $message);
 
-        if($request->cookie('debug') === 'true'){
-            $this->addMessage('file',$e->getFile());
-            $this->addMessage('line',$e->getLine());
+        /**
+         * @todo add debug cookie fix
+         */
+        if($request->cookie('debug') === 'true') {
+            $this->addMessage('file', $e->getFile());
+            $this->addMessage('line', $e->getLine());
         }
 
         return $this->getResponse();
