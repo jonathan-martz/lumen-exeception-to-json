@@ -1,13 +1,13 @@
 <?php
 
-namespace MkaaaaaaaY\LumenExecptionToJson;
+namespace JonathanMartz\LumenExecptionToJson;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 /**
  * Class Handler
- * @package MkaaaaaaaY\LumenExecptionToJson
+ * @package JonathanMartz\LumenExecptionToJson
  */
 class Handler extends Controller
 {
@@ -23,7 +23,7 @@ class Handler extends Controller
 
         if(get_class($e) == 'Illuminate\Validation\ValidationException') {
             $message = $e->getMessage();
-            $this->addResult('validation', $e->errors());
+            $this->addData('validation', $e->errors());
         }
         else {
             $message = 'Unknown Exeception: ' . $e->getMessage();
